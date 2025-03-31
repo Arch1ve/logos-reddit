@@ -1,4 +1,9 @@
 function App() {
+
+  const testFunc = () => {
+    return <div>Random content</div>
+  }
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -6,7 +11,7 @@ function App() {
       </header>
       <div className="app-content">
         <aside className="sidebar"></aside>
-        <main className="main"></main>
+        <main className="main">{testFunc()}</main>
       </div>
     </div>
   )
