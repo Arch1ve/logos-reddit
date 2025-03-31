@@ -17,8 +17,13 @@ body {
 
 
 .app-header {
-    height: 15vh;
+    height: 12vh;
     background-color: aqua;
     border: 2px solid #000000;
     border-radius: 5px;
+}
+
+.name{
+    padding-top: 15px;
+    padding-left: 15px;
 }
