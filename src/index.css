@@ -10,3 +10,10 @@ body {
     background-color: thistle;
     height: 100%;
 }
+
+.app-header {
+    height: 15vh;
+    background-color: aqua;
+    border: 2px solid #000000;
+    border-radius: 5px;
+}
