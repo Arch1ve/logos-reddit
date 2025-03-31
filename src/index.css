@@ -14,3 +14,11 @@ body {
     width: 10vh;
     background-color: chocolate;
 }
+
+
+.app-header {
+    height: 15vh;
+    background-color: aqua;
+    border: 2px solid #000000;
+    border-radius: 5px;
+}
