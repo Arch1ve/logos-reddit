@@ -1,0 +1,12 @@
+body {
+    background-color: #e4e4e4;
+}
+
+.app-content {
+    height: 100vh;
+}
+
+.main {
+    background-color: thistle;
+    height: 100%;
+}
