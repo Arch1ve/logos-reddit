@@ -1,7 +1,8 @@
 function App() {
 
   const testFunc = () => {
-    return <div>Random content</div>
+    const randInt = Math.random().toFixed(2)
+    return <div>Random content {randInt}</div>
   }
 
   return (
