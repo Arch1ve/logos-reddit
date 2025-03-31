@@ -10,3 +10,7 @@ body {
     background-color: thistle;
     height: 100%;
 }
+.aside{
+    width: 10vh;
+    background-color: chocolate;
+}
