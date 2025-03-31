@@ -4,14 +4,17 @@ body {
 
 .app-content {
     height: 100vh;
+    display: flex;
 }
 
 .main {
     background-color: thistle;
     height: 100%;
+    flex-grow: 1;
 }
-.aside{
+.sidebar {
     width: 10vh;
+    height: 100%;
     background-color: chocolate;
 }
 
@@ -23,7 +26,7 @@ body {
     border-radius: 5px;
 }
 
-.name{
+.name {
     padding-top: 15px;
     padding-left: 15px;
 }
