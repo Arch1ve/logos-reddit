@@ -13,7 +13,7 @@ function App() {
           <div className="home-div"><a className="home" href="https://developer.mozilla.org/ru/"> HOME </a></div>
           <div className="friends-div"><a className="friends" href="https://developer.mozilla.org/ru/"> FRIENDS </a></div>
           <div className="picture-div"><img className="picture" src="https://breeland.wordpress.com/wp-content/uploads/2021/05/wp7163696-1.png?w=1024" alt="sova"></img></div>
-          <div className="log-in-div"><a className="log-in" href="https://developer.mozilla.org/ru/"> Log_in </a></div>
+          <div className="log-in-div"><a className="log-in" href="https://developer.mozilla.org/ru/"> Login </a></div>
         </div>
         
       </header>
