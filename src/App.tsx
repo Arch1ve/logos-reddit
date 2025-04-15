@@ -1,11 +1,7 @@
 import Link from './link';
+import Post from './post';
 
 function App() {
-
-  const testFunc = () => {
-    const randInt = Math.random().toFixed(2)
-    return <div>Random content {randInt}</div>
-  }
 
   return (
     <div className="app-container">
@@ -27,7 +23,12 @@ function App() {
       </header>
       <div className="app-content">
         <aside className="sidebar"></aside>
-        <main className="main">{testFunc()}</main>
+        
+        <main className="main">
+          <div> 
+            <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
+          </div>
+        </main>
       </div>
     </div>
   )
