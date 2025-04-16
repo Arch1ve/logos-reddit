@@ -25,9 +25,10 @@ function App() {
         <aside className="sidebar"></aside>
         
         <main className="main">
-          <div> 
+          
             <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
-          </div>
+            <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
+            <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />          
         </main>
       </div>
     </div>
