@@ -36,11 +36,21 @@ const Post: React.FC<PostProps> = ({ text, name }) => {
           className="counter-btn" 
           onClick={handleIncrement}
         >
-        <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"></img>  
+        <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"></img> 
         </button>
+        <a 
+          href="comment-page.tsx" 
+          className="link-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className='img-up' src="https://w7.pngwing.com/pngs/351/950/png-transparent-byggekort-business-no-entrepreneur-%C3%85s-comment-icon-face-head-black.png" alt="up"></img>  
+        </a>
       </div>
+      
     </div>
   );
 };
 
 export default Post;
+

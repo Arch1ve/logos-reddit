@@ -1,8 +1,7 @@
 import Link from './link';
 import Post from './post';
 
-function App() {
-
+function NewPage() {
   return (
     <div className="app-container">
       <header className="app-header">
@@ -26,12 +25,13 @@ function App() {
         
         <main className="main">
             <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
-            <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
-            <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />          
+            <div className="comments-div">
+              <Link  text="Comments:" href=" " />
+            </div>         
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default NewPage;
