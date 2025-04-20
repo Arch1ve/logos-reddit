@@ -1,5 +1,5 @@
-import Link from './link';
-import Post from './post';
+import Link from "./Link.tsx";
+import Post from "./Post";
 
 function App() {
 
