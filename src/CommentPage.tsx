@@ -1,6 +1,7 @@
-import React from 'react'; 
-import Link from './Link';
-import Post from './Post';
+import React from 'react';
+import Link from "./Link/Link.tsx";
+import Post from "./Post/Post.tsx";
+import logo from "./images/logo.png";
 
 export function CommentPage() { 
   return (
@@ -15,12 +16,8 @@ export function CommentPage() {
               <Link text="FRIENDS" href="" />
             </div>
             <div className="picture-div">
-              <img 
-                className="picture" 
-                src="https://sun9-21.userapi.com/s/v1/ig2/zSx-VG34YWZVNGjOtMIiKgpISGSWsWKazGblqgA_PsO8oQTSIFkZ4oGl6CJeu7lvfHnfJa4PWvcr1f0m4NRCaoXy.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1024x1024&from=bu&u=NFUR0_qJPBI4HxKLaoo3Ria_2MjxUgfHxL_m4yOiFU4&cs=807x807" 
-                alt="sova"
-              />
-            </div>
+                <img className="picture" src={logo} alt="logo" />
+              </div>
             <div className="log-in-div">
               <Link text="Login" href="" /> 
             </div>

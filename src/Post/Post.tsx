@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
+import { CommentPage } from '../CommentPage';
 
 interface PostProps {
   text: string;
   name: string;
 }
-
 const Post: React.FC<PostProps> = ({ text, name }) => {
   const [count, setCount] = useState(0);
 
@@ -29,28 +30,28 @@ const Post: React.FC<PostProps> = ({ text, name }) => {
           className="counter-btn" 
           onClick={handleDecrement}
         >
-        <img className='img-up' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"></img>
+          <img className='img-up' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"/>
         </button>
         <span className='count' id="counter">{count}</span>
         <button 
           className="counter-btn" 
           onClick={handleIncrement}
         >
-        <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"></img> 
+          <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="down"/> 
         </button>
-        <a 
-          href="comment-page.tsx" 
+        <Link 
+          to="/comments"
           className="link-btn"
-          target="_blank"
-          rel="noopener noreferrer"
         >
-          <img className='img-up' src="https://w7.pngwing.com/pngs/351/950/png-transparent-byggekort-business-no-entrepreneur-%C3%85s-comment-icon-face-head-black.png" alt="up"></img>  
-        </a>
+          <img 
+            className='img-up' 
+            src="https://w7.pngwing.com/pngs/351/950/png-transparent-byggekort-business-no-entrepreneur-%C3%85s-comment-icon-face-head-black.png" 
+            alt="comments"
+          />  
+        </Link>
       </div>
-      
     </div>
   );
 };
 
 export default Post;
-
