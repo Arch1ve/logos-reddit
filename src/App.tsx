@@ -31,7 +31,8 @@ const App = () => {
           </header>
           <div className="content-wrapper">
             <aside className="sidebar-primary">
-              <ButtonText text="hello" />
+              <ButtonText className='button button--m'>text</ButtonText>
+              <ButtonText className="button button--l">text</ButtonText>
             </aside>
             
             <main className="content-main">

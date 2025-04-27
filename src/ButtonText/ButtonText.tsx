@@ -1,17 +1,15 @@
 import React from 'react';
 
-interface LinkProps {
-  text: string;
-
+interface ButtonTextProps {
+  children: React.ReactNode;
+  className?: string;  
 }
 
-const ButtonText: React.FC<LinkProps> = ({ text }) => {
+const ButtonText: React.FC<ButtonTextProps> = ({ children, className }) => {
   return (
-    <button 
-          className="button"
-        >
-            {text}
-        </button>
+    <button className={className}>
+      {children}
+    </button>
   );
 };
 
