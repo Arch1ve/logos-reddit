@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom' // Импортируем Brows
 import './App.css'
 import "./Link/link.css"
 import "./Post/post.css"
-import "./ButtonText/buttontext.css"
+import "./ButtonText/buttontext.sass"
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
