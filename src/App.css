@@ -1,84 +1,109 @@
+/* Global Styles */
 body {
     background-color: #e4e4e4;
 }
 
-.app-content {
-    height: 100vh;
-    display: flex;
-}
-
-.main {
+/* Main Container */
+.app-container {
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    justify-content: start;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    padding-top: 10px;
-    background-color: rgb(255, 255, 255);
-    border-right: 2px solid #000000;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: center;
+    min-height: 100vh;
 }
 
-
-.app-header {
+/* Header Section */
+.header-main {
     height: 120px;
     background-color: #e9e3e3de;
     border-bottom: 2px solid #000000;
-    
 }
 
-.header {
+.header-container {
     display: flex;
+    width: 100%;
+    height: 100%;
 }
 
-.name-div {
+.brand-container {
     margin: 23px 15px 0;
     width: 188px;
 }
 
-.name {
+.brand-link {
     color: #000000;
     font-family: Optima, sans-serif;
     font-size: 65px;
     text-decoration: none;
+    transition: opacity 0.3s ease;
 }
 
-.friends-div {
-    justify-self: start;
-    margin-left: 20px;
+.brand-link:hover {
+    opacity: 0.8;
 }
 
-.picture {
-    height: 115px;
-    
-}
-
-.log-in-div {
-    margin-right: 50px;
-}
-
-
-.comments {
-    color: #000000;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 45px;
-    text-decoration: none;
-}
-
-.objects-header {
+/* Navigation */
+.header-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.auth-section {
+    margin-right: 50px;
+}
+
+/* Logo */
+.brand-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 115px;
+    object-fit: contain;
+}
+
+/* Main Content */
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
+}
+
+.sidebar-primary {
+    width: 237px;
+    height: 100vh;
+    padding-top: 10px;
+    background-color: rgb(255, 255, 255);
+    border-right: 2px solid #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 30px;
     width: 100%;
+    max-width: 800px;
+}
+
+/* Utilities */
+.button-spacing {
+    margin: 10px 0;
 }

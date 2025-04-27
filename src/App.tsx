@@ -11,28 +11,30 @@ const App = () => {
     <Routes>
       <Route path="/" element={
         <div className="app-container">
-          <header className="app-header">
-            <div className="header"> 
-              <div className="name-div"><a className="name" href="">NAME</a></div>
-              <div className='objects-header'>
-                <div className="friends-div">
+          <header className="header-main">
+            <div className="header-container"> 
+              <div className="brand-container">
+                <a className="brand-link" href="">NAME</a>
+              </div>
+              <div className='header-navigation'>
+                <div className="nav-item">
                   <Link text="FRIENDS" href=" " />
                 </div>
-                <div className="picture-div">
-                  <img className="picture" src={logo} alt="logo" />
+                <div className="brand-logo">
+                  <img className="logo-image" src={logo} alt="logo" />
                 </div>
-                <div className="log-in-div">
+                <div className="auth-section">
                   <Link text="Login" href=" " />
                 </div>
               </div>
             </div>
           </header>
-          <div className="app-content">
-            <aside className="sidebar">
+          <div className="content-wrapper">
+            <aside className="sidebar-primary">
               <ButtonText text="hello" />
             </aside>
             
-            <main className="main">
+            <main className="content-main">
               <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
               <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />
               <Post text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" name="chilguy" />          

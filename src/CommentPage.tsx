@@ -6,33 +6,33 @@ import logo from "./images/logo.png";
 export function CommentPage() { 
   return (
     <div className="app-container">
-      <header className="app-header">
-        <div className="header">
-          <div className="name-div">
-            <a className="name" href="">NAME</a> 
+      <header className="header-main">
+        <div className="header-container">
+          <div className="brand-container">
+            <a className="brand-link" href="">NAME</a> 
           </div>
-          <div className='objects-header'>
-            <div className="friends-div">
+          <div className='header-navigation'>
+            <div className="nav-item">
               <Link text="FRIENDS" href="" />
             </div>
-            <div className="picture-div">
-                <img className="picture" src={logo} alt="logo" />
+            <div className="brand-logo">
+                <img className="logo-image" src={logo} alt="logo" />
               </div>
-            <div className="log-in-div">
+            <div className="auth-section">
               <Link text="Login" href="" /> 
             </div>
           </div>
         </div>
       </header>
-      <div className="app-content">
-        <aside className="sidebar"></aside>
-        <main className="main">
+      <div className="content-wrapper">
+        <aside className="sidebar-primary"></aside>
+        <main className="content-main">
           <Post 
             text="duhfeboaenrdzfbzdbfdzfbzbfzdbdzfbdzfbdzfbdzfbdfbbo;aebnonbo;en" 
             name="chilguy" 
           />
-          <div className="comments-div">
-            <Link text="Answers:" href="#comments" /> {/* Якорная ссылка */}
+          <div className="comments-section">
+            <Link text="Answers:" href="#comments" />
           </div>
         </main>
       </div>
