@@ -1,14 +1,16 @@
+import "./comment.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./post.css"
+
+const name = "student"
 
 interface PostProps {
-  postID: number;
   text: string;
-  name: string;
+  name?: string;
+  commentID: number;
 }
 
-const Post: React.FC<PostProps> = ({ text, name, postID }) => {
+const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -20,12 +22,12 @@ const Post: React.FC<PostProps> = ({ text, name, postID }) => {
   };
 
   return (
-    <div className='post'>
-      <div className='post-name-div'> 
-        <p className='post-name'>{name}</p>
+    <div className='comment'>
+      <div className='comment-name-div'> 
+        <p className='comment-name'>{name}</p>
       </div>
-      <div className='post-text-div'> 
-        <p className='post-text'>{text}</p>
+      <div className='comment-text-div'> 
+        <p className='comment-text'>{text}</p>
       </div>
       <div className="counter-container">
         <button 
@@ -41,19 +43,9 @@ const Post: React.FC<PostProps> = ({ text, name, postID }) => {
         >
           <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="down"/> 
         </button>
-        <Link 
-          to={`/comments/${postID}`}
-          className="link-btn"
-        >
-          <img 
-            className='img-up' 
-            src="https://w7.pngwing.com/pngs/351/950/png-transparent-byggekort-business-no-entrepreneur-%C3%85s-comment-icon-face-head-black.png" 
-            alt="comments"
-          />  
-        </Link>
       </div>
     </div>
   );
 };
 
-export default Post;
+export default Comment;
