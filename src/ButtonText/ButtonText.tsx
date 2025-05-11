@@ -1,15 +1,33 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './buttontext.sass';
 
-interface ButtonTextProps {
+interface ButtonTextProps extends React.ComponentPropsWithoutRef<'button'> {
+  as?: React.ElementType;
+  to?: string;
+  className?: string;
   children: React.ReactNode;
-  className?: string;  
 }
 
-const ButtonText: React.FC<ButtonTextProps> = ({ children, className }) => {
+const ButtonText: React.FC<ButtonTextProps> = ({ 
+  as: Component = 'button',
+  to,
+  className = '',
+  children,
+  ...props
+}) => {
+  const combinedClasses = `button ${className}`.trim();
+  
+  const additionalProps = Component === Link ? { to } : {};
+
   return (
-    <button className={className}>
+    <Component 
+      className={combinedClasses}
+      {...additionalProps}
+      {...props}
+    >
       {children}
-    </button>
+    </Component>
   );
 };
 

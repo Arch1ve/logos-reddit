@@ -1,95 +1,139 @@
-
 .post {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 400px;
-    width: 500px;
-    border: 3px solid #000000;
-    border-radius: 20px;
-    margin-top: 20px;
-    background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  border: 3px solid #000000;
+  border-radius: 20px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  padding-bottom: 20px;
+}
+
+.post-title-div {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  margin: 0px 15px 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 27px;
+  word-break: break-word;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  font-weight: bold;
 }
 
 .post-name-div {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    width: 100%;
-    height: 10%;
-    background-color: #e9e3e3de;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  height: 20px;
+  padding: 10px 15px;
+  background-color: #3bd1ff;
 }
 
 .post-name {
-    margin-left: 10px;
+  margin-left: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .post-text-div {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-top: 10px;
-    margin-left: 15px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 25px;
-    width: 485px;
-    height: 50px;
-    word-break: break-all;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  margin: 0px 15px 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  word-break: break-word;
+  line-height: 1.4;
+  white-space: pre-wrap;
 }
 
-/* Стили для счетчика */
 .counter-container {
-    margin-top: 200px;
-    margin-left: 3px;
-    width: 150px;
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    padding: 10px 15px;
-    border-radius: 30%;
-  }
-  
+  margin-top: 200px;
+  margin-left: 3px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  background:  #ffffff;
+  padding: 10px 15px;
+  border-radius: 30%;
+}
+
 .counter-btn {
-    background: #ffffff;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  #counter {
-    font-size: 1.4em;
-    font-weight: bold;
-    min-width: 30px;
-    text-align: center;
-  }
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
 
-.img-up {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-  }
-
-.img-down {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    transform: rotate(180deg);
-  }
-
-.count {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
+#counter {
+  font-family: 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.4em;
+  min-width: 40px;
+  text-align: center;
+}
 
 .link-btn {
-    padding: 8px 16px;
-    background-color: #ffffff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: auto;
+  color: inherit;
+}
+
+.post-icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s;
+}
+
+.counter-btn:hover .post-icon {
+  transform: scale(1.1);
+}
+
+@media (max-width: 700px) {
+  .post {
+    width: 400px;
+    margin: 15px auto;
+    border-radius: 15px;
   }
+
+  .post-title-div {
+    font-size: 20px;
+    margin: 0 10px;
+  }
+
+  .post-name-div {
+    padding: 7px 10px;
+    height: 25px;
+  }
+
+  .post-name {
+    font-size: 1em;
+  }
+
+  .post-text-div {
+    font-size: 18px;
+    margin: 0 10px;
+  }
+
+  .counter-container {
+    width: 130px;
+    margin-top: 150px;
+    padding: 7px 10px;
+  }
+
+  .post-icon {
+    width: 25px;
+    height: 25px;
+  }
+}

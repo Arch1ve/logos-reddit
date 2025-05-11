@@ -1,16 +1,24 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom' // Импортируем BrowserRouter
-import './App.css'
-import "./Link/link.css"
-import "./Post/post.css"
-import "./ButtonText/buttontext.sass"
-import App from './App.tsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import "./normalize.css";
+import './App.css';
+import "./Post/post.css";
+import App from './App';
+import { CommentPage } from './CommentPage';
+import Layout from './Layout';
+import { CreatePost } from './CreatePost';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<App />} />
+          <Route path="/comments/:postId" element={<CommentPage />} />
+          <Route path="/new-post" element={<CreatePost />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-  </StrictMode>,
-)
+  </StrictMode>
+);

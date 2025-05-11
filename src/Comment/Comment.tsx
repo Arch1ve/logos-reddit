@@ -1,6 +1,7 @@
 import "./comment.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
 
 const name = "student"
 
@@ -34,14 +35,18 @@ const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
           className="counter-btn" 
           onClick={handleDecrement}
         >
-          <img className='img-up' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="up"/>
+          <SlArrowUpCircle 
+            size = {30}
+          />
         </button>
         <span className='count' id="counter">{count}</span>
         <button 
           className="counter-btn" 
           onClick={handleIncrement}
         >
-          <img className='img-down' src="https://cdn-icons-png.flaticon.com/512/25/25366.png" alt="down"/> 
+          <SlArrowDownCircle 
+            size = {30}
+          />
         </button>
       </div>
     </div>
