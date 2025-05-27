@@ -29,7 +29,7 @@ body {
 
 .mobile-button-container {
     display: none;
-    background-color:  #c69d5b;
+    background-color:  #ffffff;
     border-bottom: 2px solid #000;
     padding: 15px 0;
     justify-content: center;
@@ -100,6 +100,7 @@ body {
 
 .auth-section {
     margin-right: 50px;
+    margin-top: 20px;
 }
 
 .brand-logo {
@@ -224,7 +225,7 @@ body {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color:  #c69d5b;
+    background-color:  #ffffff;
     padding: 20px;
     overflow-y: auto;
 }
@@ -310,4 +311,179 @@ body {
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
+}
+
+.language-switcher {
+  margin-left: 20px;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.language-switcher button.active-lang {
+  color: #000;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+.new-post-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 500px;
+  height: 600px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-input {
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  width: 400px;
+}
+
+.form-input:focus {
+  border-color: #4299e1;
+  outline: none;
+  
+}
+
+.form-textarea {
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-height: 150px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  width: 400px;
+}
+
+.form-textarea:focus {
+  border-color: #4299e1;
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.button-primary {
+  background-color: #4299e1;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: #3182ce;
+}
+
+/* Общие стили для форм */
+.new-post-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-input {
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: #4299e1;
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.button-primary {
+  background-color: #4299e1;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: #3182ce;
 }

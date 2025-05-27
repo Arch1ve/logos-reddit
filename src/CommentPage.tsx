@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Post from "./Post/Post"
 import { postsData } from './Post/postsData'
 import Comment from "./Comment/Comment"
@@ -12,6 +13,7 @@ interface CommentData {
 }
 
 export function CommentPage() {
+  const { t } = useTranslation()
   const { postId } = useParams<{ postId: string }>()
   const [comments, setComments] = useState<CommentData[]>([])
   const [newComment, setNewComment] = useState('')
@@ -34,7 +36,7 @@ export function CommentPage() {
   }
 
   if (!post) {
-    return <div>Post not found</div>
+    return <div>{t('postNotFound')}</div>
   }
 
   return (
@@ -48,16 +50,18 @@ export function CommentPage() {
         />
         
         <div className="comments-section">
-          <Linktext text="Answers:" href="/answers" />
+          <Linktext text={t('answers')} href="/answers" />
           
           <form onSubmit={handleSubmit} className="comment-form">
             <textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Write a comment..."
+              placeholder={t('commentPlaceholder')}
               className="comment-input"
             />
-            <ButtonText className='button button--l'>Add Comment</ButtonText>
+            <ButtonText className='button button--l'>
+              {t('addComment')}
+            </ButtonText>
           </form>
 
           <div className="comments-list">

@@ -1,13 +1,21 @@
-import { Outlet } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import logo from "./images/logo.png"
-import Title from "./images/Title.png"
-import "./App.css"
-import Linktext from "./Link/Link.tsx"
-import "./ButtonText/buttontext.sass"
-import ButtonText from './ButtonText/ButtonText.tsx'
+import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logo from "./images/logo.png";
+import Title from "./images/Title.png";
+import "./App.css";
+import Linktext from "./Link/Link";
+import "./ButtonText/buttontext.sass";
+import ButtonText from './ButtonText/ButtonText';
 
 const Layout = () => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
+  };
+
   return (
     <div className="app-container">
       <header className="header-main">
@@ -19,13 +27,27 @@ const Layout = () => {
           </div>
           <div className='header-navigation'>
             <div className="nav-item">
-              <Linktext text="FRIENDS" href="/friends" />
+              <Linktext text={t('friends')} href="/friends" />
             </div>
             <div className="brand-logo">
               <img className="logo-image" src={logo} alt="logo" />
             </div>
             <div className="auth-section">
-              <Linktext text="Login" href="/friends" />
+              <Linktext text={t('login')} href="/login" />
+              <div className="language-switcher">
+                <button 
+                  onClick={() => changeLanguage('en')}
+                  className={i18n.language === 'en' ? 'active-lang' : ''}
+                >
+                  EN
+                </button>
+                <button 
+                  onClick={() => changeLanguage('uk')}
+                  className={i18n.language === 'uk' ? 'active-lang' : ''}
+                >
+                  UA
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -37,7 +59,7 @@ const Layout = () => {
           as={Link}
           to="/new-post"
         >
-          New Post
+          {t('newPost')}
         </ButtonText>
       </div>
 
@@ -48,7 +70,7 @@ const Layout = () => {
             as={Link}
             to="/new-post"
           >
-            New Post
+            {t('newPost')}
           </ButtonText>
         </aside>
         <main className="content-main">
@@ -59,4 +81,4 @@ const Layout = () => {
   )
 }
 
-export default Layout
+export default Layout;
