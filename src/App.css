@@ -487,3 +487,97 @@ body {
 .button-primary:hover {
   background-color: #3182ce;
 }
+
+/* Добавьте эти стили в конец файла */
+
+/* CommentPage styles */
+.comment-page-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comments-header {
+  margin-bottom: 1.5rem;
+}
+
+.comment-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment-form {
+  position: relative;
+}
+
+.form-group {
+  position: relative;
+}
+
+.comment-textarea {
+  width: 700px;
+  padding: 1rem;
+  padding-right: 50px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.3s ease;
+}
+
+.comment-textarea:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.comment-submit-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: #4299e1;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-submit-button:hover {
+  background-color: #3182ce;
+}
+
+.comment-submit-button svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 700px) {
+  .comment-page-container {
+    padding: 1rem;
+  }
+}

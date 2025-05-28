@@ -6,6 +6,7 @@ import { postsData } from './Post/postsData'
 import Comment from "./Comment/Comment"
 import ButtonText from './ButtonText/ButtonText'
 import Linktext from "./Link/Link" 
+import './App.css' // Импортируем стили
 
 interface CommentData {
   commentID: number
@@ -40,8 +41,8 @@ export function CommentPage() {
   }
 
   return (
-    <div className="content-main">
-      <div className='posts-div'>
+    <div className="comment-page-container">
+      <div className="comment-form-container">
         <Post 
           title={post.title}
           text={post.text} 
@@ -50,18 +51,25 @@ export function CommentPage() {
         />
         
         <div className="comments-section">
-          <Linktext text={t('answers')} href="/answers" />
+          <div className="comments-header">
+            <Linktext text={t('answers')} href="/answers" />
+          </div>
           
           <form onSubmit={handleSubmit} className="comment-form">
-            <textarea
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder={t('commentPlaceholder')}
-              className="comment-input"
-            />
-            <ButtonText className='button button--l'>
-              {t('addComment')}
-            </ButtonText>
+            <div className="form-group">
+              <textarea
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder={t('commentPlaceholder')}
+                className="comment-textarea"
+                rows={4}
+              />
+              <button type="submit" className="comment-submit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+                </svg>
+              </button>
+            </div>
           </form>
 
           <div className="comments-list">
