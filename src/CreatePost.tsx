@@ -26,6 +26,8 @@ export function CreatePost() {
     navigate('/');
   };
 
+  //TODO: сделать форму шире, чтобы она была шириной минимум как пост
+  //TODO: нужно добавить поле shortDescription
   return (
     <div className="new-post-container">
       <form onSubmit={handleSubmit} className="post-form">

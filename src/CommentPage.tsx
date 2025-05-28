@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next'
 import Post from "./Post/Post"
 import { postsData } from './Post/postsData'
 import Comment from "./Comment/Comment"
-import ButtonText from './ButtonText/ButtonText'
-import Linktext from "./Link/Link" 
-import './App.css' // Импортируем стили
+import Linktext from "./Link/Link"
+import './App.css'
 
 interface CommentData {
   commentID: number
@@ -40,6 +39,7 @@ export function CommentPage() {
     return <div>{t('postNotFound')}</div>
   }
 
+  //TODO: не понятно зачем обводка у контейнера, но если хочешь - оставь
   return (
     <div className="comment-page-container">
       <div className="comment-form-container">

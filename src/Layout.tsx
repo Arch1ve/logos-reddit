@@ -11,11 +11,16 @@ import ButtonText from './ButtonText/ButtonText';
 const Layout = () => {
   const { t, i18n } = useTranslation();
 
+  //TODO: зачем вообще делать 2 языка если пользователи используют только русский
+  //TODO: и даже если так, то почему русского нет?)
+  // в общем рекомендую от переключения языков избавиться
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
   };
 
+  //TODO: если  уж написано логин, то должна окрываться страница с логином, а не с регистрацией
+  // из этого исходит что тебе ещё и страничку с логином надо сделать
   return (
     <div className="app-container">
       <header className="header-main">
