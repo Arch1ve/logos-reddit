@@ -10,6 +10,7 @@ import ButtonText from './ButtonText/ButtonText';
 export function CreatePost() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
+  const [shortDescription, setShortDescription] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ export function CreatePost() {
     const newPost: PostData = {
       postID: Date.now(),
       title,
+      shortDescription,
       text: description,
       name: t('currentUser')
     };
@@ -26,8 +28,6 @@ export function CreatePost() {
     navigate('/');
   };
 
-  //TODO: сделать форму шире, чтобы она была шириной минимум как пост
-  //TODO: нужно добавить поле shortDescription
   return (
     <div className="new-post-container">
       <form onSubmit={handleSubmit} className="post-form">
@@ -49,12 +49,27 @@ export function CreatePost() {
 
         <div className="form-group">
           <label className="input-label">
+            <Linktext text={t('Краткое описание') + ":"} href="/friends" />
+            <textarea
+              className="form-textarea short-description"
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
+              placeholder={t('shortDescriptionPlaceholder')}
+              required
+              rows={3}
+              maxLength={200}
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label className="input-label">
             <Linktext text={t('description') + ":"} href="/friends" />
             <textarea
               className="form-textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder={t('descriptionPlaceholder')}
+              placeholder={t('Добавьте краткое описание...')}
               required
               rows={6}
             />

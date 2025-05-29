@@ -14,7 +14,7 @@ export function CreateUser() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь логика регистрации
+    // TODO: Здесь логика регистрации
     console.log({ email, password, username });
     navigate('/');
   };

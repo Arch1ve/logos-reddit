@@ -3,31 +3,32 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
-  en: {
+  ru: {
     translation: {
-      friends: 'FRIENDS',
-      login: 'Login',
-      newPost: 'New Post',
-      answers: 'Answers:',
-      commentPlaceholder: 'Write a comment...',
-      addComment: 'Add Comment',
-      postNotFound: 'Post not found',
-      createNewPost: 'Create New Post',
-      title: 'Title',
-      titlePlaceholder: 'Enter post title...',
-      description: 'Description',
-      descriptionPlaceholder: 'Write your post content...',
-      createPost: 'Publish Post',
+      friends: 'Друзья',
+      login: 'Регистрация',
+      newPost: 'Новый пост',
+      answers: 'Ответы:',
+      commentPlaceholder: 'Напишите комментарий...',
+      addComment: 'Добавить комментарий',
+      postNotFound: 'Пост не найден',
+      createNewPost: 'Создать пост',
+      title: 'Заголовок',
+      titlePlaceholder: 'Добавьте заголовок поста...',
+      description: 'Полное описание',
+      descriptionPlaceholder: 'Добавьте описание поста...',
+      createPost: 'Опубликовать пост',
       currentUser: 'Current User',
-      welcome: 'Welcome!',
-      createAccount: 'Create Account',
+      welcome: 'Добро пожаловать!',
+      createAccount: 'Создание аккаунта',
       email: 'Email',
-      password: 'Password',
-      username: 'Name',
-      emailPlaceholder: 'Enter your email...',
-      passwordPlaceholder: 'Enter password...',
-      usernamePlaceholder: 'Choose username...',
-      register: 'Register'
+      password: 'Пороль',
+      username: 'Имя',
+      emailPlaceholder: 'Добавьте почту...',
+      passwordPlaceholder: 'Добавьте пороль...',
+      usernamePlaceholder: 'Выберете имя...',
+      register: 'Регистрация',
+      registerAlert: "Пожалуйста, зарегистрируйтесь или войдите, чтобы создать пост",
     }
   },
   uk: {
@@ -54,7 +55,8 @@ const resources = {
       emailPlaceholder: 'Введіть емейл...',
       passwordPlaceholder: 'Введіть пароль...',
       usernamePlaceholder: 'Оберіть імʼя...',
-      register: 'Зареєструватися'
+      register: 'Зареєструватися',
+      registerAlert: "Будь ласка, зареєструйтесь або увійдіть, щоб створити пост",
     }
   }
 };

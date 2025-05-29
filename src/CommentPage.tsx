@@ -19,8 +19,7 @@ export function CommentPage() {
   const [newComment, setNewComment] = useState('')
   const commentIdCounter = useRef(0)
 
-  const postIndex = Number(postId)
-  const post = postsData[postIndex]
+  const post = postsData.find(p => p.postID === Number(postId));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,15 +38,14 @@ export function CommentPage() {
     return <div>{t('postNotFound')}</div>
   }
 
-  //TODO: не понятно зачем обводка у контейнера, но если хочешь - оставь
   return (
     <div className="comment-page-container">
       <div className="comment-form-container">
         <Post 
           title={post.title}
-          text={post.text} 
+          shortDescription={post.text} // Полное описание передаётся как shortDescription
           name={post.name}
-          postID={postIndex}
+          postID={post.postID}
         />
         
         <div className="comments-section">

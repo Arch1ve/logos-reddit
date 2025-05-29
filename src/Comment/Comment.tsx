@@ -37,6 +37,7 @@ const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
         >
           <SlArrowUpCircle 
             size = {30}
+            color='#3bd1ff'
           />
         </button>
         <span className='count' id="counter">{count}</span>
@@ -46,6 +47,7 @@ const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
         >
           <SlArrowDownCircle 
             size = {30}
+            color='#3bd1ff'
           />
         </button>
       </div>

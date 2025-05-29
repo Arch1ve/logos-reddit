@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Outlet, useNavigate, Link } from 'react-router-dom';
 import logo from "./images/logo.png";
 import Title from "./images/Title.png";
 import "./App.css";
@@ -10,17 +10,30 @@ import ButtonText from './ButtonText/ButtonText';
 
 const Layout = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  //TODO: зачем вообще делать 2 языка если пользователи используют только русский
-  //TODO: и даже если так, то почему русского нет?)
-  // в общем рекомендую от переключения языков избавиться
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsAuthenticated(!!token);
+  }, []);
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
   };
 
-  //TODO: если  уж написано логин, то должна окрываться страница с логином, а не с регистрацией
-  // из этого исходит что тебе ещё и страничку с логином надо сделать
+  const handleNewPostClick = () => {
+    if (!isAuthenticated) {
+      alert(t('registerAlert', {
+        link1: t('register'),
+        link2: t('login')
+      }));
+      return;
+    }
+    navigate('/new-post');
+  };
+
   return (
     <div className="app-container">
       <header className="header-main">
@@ -41,10 +54,10 @@ const Layout = () => {
               <Linktext text={t('login')} href="/login" />
               <div className="language-switcher">
                 <button 
-                  onClick={() => changeLanguage('en')}
-                  className={i18n.language === 'en' ? 'active-lang' : ''}
+                  onClick={() => changeLanguage('ru')}
+                  className={i18n.language === 'ru' ? 'active-lang' : ''}
                 >
-                  EN
+                  RU
                 </button>
                 <button 
                   onClick={() => changeLanguage('uk')}
@@ -61,8 +74,7 @@ const Layout = () => {
       <div className="mobile-button-container">
         <ButtonText 
           className="button button--l"
-          as={Link}
-          to="/new-post"
+          onClick={handleNewPostClick}
         >
           {t('newPost')}
         </ButtonText>
@@ -72,8 +84,7 @@ const Layout = () => {
         <aside className="sidebar-primary">
           <ButtonText 
             className="button button--l"
-            as={Link}
-            to="/new-post"
+            onClick={handleNewPostClick}
           >
             {t('newPost')}
           </ButtonText>
