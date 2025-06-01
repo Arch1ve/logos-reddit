@@ -1,9 +1,6 @@
 import "./comment.css";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
-
-const name = "student";
+import { SlArrowUpCircle, SlArrowDownCircle } from "react-icons/sl";
 
 interface PostProps {
   text: string;
@@ -11,7 +8,7 @@ interface PostProps {
   commentID: String;
 }
 
-export const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
+export const Comment: React.FC<PostProps> = ({ text, name }) => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {

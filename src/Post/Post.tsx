@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./post.css"
 import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
-import { useTranslation } from 'react-i18next';
 
 interface PostProps {
   postID: String;
@@ -12,7 +11,6 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) => {
-  const { t } = useTranslation();
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 

@@ -5,10 +5,10 @@ interface IPost {
   postID: string;
   title: string;
   shortDescription: string;
-  author: string; // Изменено с name на author
+  author: string;
 }
 
-const App = () => {
+export const App = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,5 +56,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
