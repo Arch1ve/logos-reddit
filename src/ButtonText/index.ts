@@ -1,1 +1,1 @@
-import * from "./App"
+export * from "./ButtonText"

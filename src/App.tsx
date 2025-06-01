@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Post from "./Post/Post.tsx"
+import {Post} from "./Post"
 import { postsData } from './Post/postsData'
 
 const App = () => {

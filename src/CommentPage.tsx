@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Post from "./Post/Post"
+import {Post} from "./Post"
 import { postsData } from './Post/postsData'
-import Comment from "./Comment/Comment"
-import Linktext from "./Link/Link"
+import {Comment} from "./Comment"
+import {Linktext} from "./Link"
 import './App.css'
 
 interface CommentData {

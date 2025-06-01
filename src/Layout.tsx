@@ -4,9 +4,9 @@ import { Outlet, useNavigate, Link } from 'react-router-dom';
 import logo from "./images/logo.png";
 import Title from "./images/Title.png";
 import "./App.css";
-import Linktext from "./Link/Link";
+import {Linktext} from "./Link";
 import "./ButtonText/buttontext.sass";
-import ButtonText from './ButtonText/ButtonText';
+import {ButtonText} from './ButtonText';
 
 const Layout = () => {
   const { t, i18n } = useTranslation();

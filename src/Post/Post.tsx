@@ -11,7 +11,7 @@ interface PostProps {
   name: string;
 }
 
-const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) => {
+export const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) => {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
@@ -64,5 +64,3 @@ const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) =>
     </div>
   );
 };
-
-export default Post;

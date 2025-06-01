@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { postsData, PostData } from "./Post/postsData";
-import Linktext from "./Link/Link";
+import {Linktext} from "./Link";
 import "./App.css";
 import "./ButtonText/buttontext.sass";
-import ButtonText from './ButtonText/ButtonText';
+import {ButtonText} from './ButtonText';
 
 export function CreatePost() {
   const { t } = useTranslation();

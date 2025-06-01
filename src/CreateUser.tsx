@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Linktext from "./Link/Link";
+import {Linktext} from "./Link";
 import "./App.css";
-import ButtonText from './ButtonText/ButtonText';
+import {ButtonText} from './ButtonText';
 
 export function CreateUser() {
   const { t } = useTranslation();
