@@ -5,7 +5,9 @@ interface IPost {
   postID: string;
   title: string;
   shortDescription: string;
-  author: string;
+  author: { 
+    username: string;
+  };
 }
 
 export const App = () => {
@@ -16,7 +18,7 @@ export const App = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/posts");
+        const response = await fetch("http://localhost:3000/api/posts");
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -25,6 +27,7 @@ export const App = () => {
         const data = await response.json();
         setPosts(data);
       } catch (err) {
+        console.log(err)
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
@@ -48,9 +51,9 @@ export const App = () => {
         <Post
           title={post.title}
           key={post.postID}
-          postID={post.postID}
+          postID={post._id}
           shortDescription={post.shortDescription}
-          name={post.author} 
+          name={post.author?.username} 
         />
       ))}
     </div>

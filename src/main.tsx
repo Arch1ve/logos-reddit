@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "./normalize.css";
 import './App.css';
 import "./Post/post.css";
-import { App } from './App';
+import  { App }  from './App';
 import { CommentPage } from './CommentPage';
 import  { Layout } from './Layout';
 import { CreatePost } from './CreatePost';

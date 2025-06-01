@@ -5,7 +5,7 @@ import { SlArrowUpCircle, SlArrowDownCircle } from "react-icons/sl";
 interface PostProps {
   text: string;
   name?: string;
-  commentID: String;
+  commentID: string;
 }
 
 export const Comment: React.FC<PostProps> = ({ text, name }) => {

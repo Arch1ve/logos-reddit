@@ -1,5 +1,6 @@
+// CommentPage.tsx
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Post } from "./Post/Post"
 import { Comment } from "./Comment/Comment"
@@ -11,87 +12,107 @@ interface CommentData {
   text: string;
 }
 
-interface Author {
-  name: string;
-}
-
 interface PostData {
   _id: string;
   title: string;
-  description: string;
-  author: Author;
-  comments?: CommentData[];
+  text: string;
+  name: string;
+  comments: CommentData[];
 }
 
 export function CommentPage() {
   const { t } = useTranslation()
   const { postId } = useParams<{ postId: string }>()
-  
+  const navigate = useNavigate();
   const [post, setPost] = useState<PostData | null>(null)
-  const [comments, setComments] = useState<CommentData[]>([])
-  const [newComment, setNewComment] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [newComment, setNewComment] = useState('')
 
+  // Загрузка поста и комментариев
   useEffect(() => {
-    if (!postId) return
-
     const fetchPost = async () => {
       try {
-        setIsLoading(true)
-        const response = await fetch(`http://localhost:3000/post/${postId}`)
+        setLoading(true);
+        const response = await fetch(`http://localhost:3000/api/post/${postId}`);
         
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          if (response.status === 404) {
+            navigate('/not-found');
+          }
+          throw new Error('Failed to fetch post');
         }
         
-        const data: PostData = await response.json()
-        setPost(data)
-        setComments(data.comments || [])
+        const data = await response.json();
+        setPost(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error")
+        setError(err.message || 'Error loading post');
       } finally {
-        setIsLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchPost()
-  }, [postId])
+    fetchPost();
+  }, [postId, navigate]);
 
-  const handleAddComment = async () => {
+  // Создание нового комментария
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     if (!newComment.trim() || !postId) return
 
     try {
-      const response = await fetch(`http://localhost:3000/comment/create/${postId}`, {
+      // Получаем токен из localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      const response = await fetch(`http://localhost:3000/api/comment/create/${postId}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          // Добавляем токен в заголовок Authorization
+          'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ text: newComment })
+        body: JSON.stringify({ description: newComment }),
       })
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        // Обработка ошибки 401 (Unauthorized)
+        if (response.status === 401) {
+          navigate('/login');
+          return;
+        }
+        throw new Error('Failed to create comment');
       }
 
-      const createdComment: CommentData = await response.json()
-      setComments(prev => [...prev, createdComment])
+      const createdComment = await response.json()
+      
+      // Обновляем состояние, добавляя новый комментарий
+      if (post) {
+        setPost({
+          ...post,
+          comments: [...post.comments, createdComment]
+        })
+      }
+      
       setNewComment('')
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Error adding comment")
+      console.error('Error creating comment:', err)
     }
   }
 
-  if (isLoading) {
-    return <div className="loading">{t('loading')}</div>
+  if (loading) {
+    return <div className="loading-container">{t('loading')}</div>
   }
 
   if (error) {
-    return <div className="error">{error}</div>
+    return <div className="error-container">{error}</div>
   }
 
   if (!post) {
-    return <div className="error">{t('postNotFound')}</div>
+    return <div>{t('postNotFound')}</div>
   }
 
   return (
@@ -99,45 +120,41 @@ export function CommentPage() {
       <div className="comment-form-container">
         <Post 
           title={post.title}
-          shortDescription={post.description}
-          name={post.author?.name || t('unknownAuthor')}
+          shortDescription={post.text}
+          name={post.name}
           postID={post._id}
         />
-
+        
         <div className="comments-section">
           <div className="comments-header">
             <Linktext text={t('answers')} href="/answers" />
           </div>
-
-          <div className="add-comment">
-            <textarea
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder={t('commentPlaceholder')}
-              className="comment-textarea"
-              rows={4}
-            />
-            <button 
-              onClick={handleAddComment} 
-              className="comment-submit-button"
-              disabled={!newComment.trim()}
-            >
-              {t('addComment')}
-            </button>
-          </div>
+          
+          <form onSubmit={handleSubmit} className="comment-form">
+            <div className="form-group">
+              <textarea
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder={t('commentPlaceholder')}
+                className="comment-textarea"
+                rows={4}
+              />
+              <button type="submit" className="comment-submit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+                </svg>
+              </button>
+            </div>
+          </form>
 
           <div className="comments-list">
-            {comments.length > 0 ? (
-              comments.map(comment => (
-                <Comment 
-                  key={comment._id} 
-                  commentID={comment._id} 
-                  text={comment.text} 
-                />
-              ))
-            ) : (
-              <p className="no-comments">{t('noComments')}</p>
-            )}
+            {post.comments.map(comment => (
+              <Comment
+                key={comment._id}
+                commentID={comment._id}
+                text={comment.description}
+              />
+            ))}
           </div>
         </div>
       </div>

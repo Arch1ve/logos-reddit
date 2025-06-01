@@ -32,7 +32,7 @@ export function CreateUser() {
 
     try {
       // Регистрация пользователя
-      const registerResponse = await fetch('http://localhost:3000/user/register', {
+      const registerResponse = await fetch('http://localhost:3000/api/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -44,7 +44,7 @@ export function CreateUser() {
       }
 
       // Автоматический вход после успешной регистрации
-      const loginResponse = await fetch('http://localhost:3000/user/login', {
+      const loginResponse = await fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
