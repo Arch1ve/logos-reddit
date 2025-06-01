@@ -1,11 +1,12 @@
 import React from 'react';
+import "./link.css"
 
 interface LinkProps {
   text: string;
   href: string;
 }
 
-const Link: React.FC<LinkProps> = ({ text, href }) => {
+const Linktext: React.FC<LinkProps> = ({ text, href }) => {
   return (
     <a
       href={href}
@@ -16,4 +17,4 @@ const Link: React.FC<LinkProps> = ({ text, href }) => {
   );
 };
 
-export default Link;
+export default Linktext;
