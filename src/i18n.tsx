@@ -57,6 +57,7 @@ const resources = {
       usernamePlaceholder: 'Оберіть імʼя...',
       register: 'Зареєструватися',
       registerAlert: "Будь ласка, зареєструйтесь або увійдіть, щоб створити пост",
+      shortDescriptionPlaceholder: "Введите краткое описание"
     }
   }
 };

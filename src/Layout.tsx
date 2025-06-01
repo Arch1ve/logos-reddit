@@ -1,80 +1,74 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, Link } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import logo from "./images/logo.png";
 import Title from "./images/Title.png";
 import "./App.css";
-import Linktext from "./Link/Link";
+import { Linktext } from "./Link/Link";
 import "./ButtonText/buttontext.sass";
-import ButtonText from './ButtonText/ButtonText';
+import { ButtonText } from './ButtonText/ButtonText';
 
-const Layout = () => {
+export const Layout = () => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    setIsAuthenticated(!!token);
-  }, []);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
   };
 
-  const handleNewPostClick = () => {
-    if (!isAuthenticated) {
-      alert(t('registerAlert', {
-        link1: t('register'),
-        link2: t('login')
-      }));
-      return;
-    }
-    navigate('/new-post');
-  };
+  // Проверка активного языка для стилизации
+  const isActiveLanguage = (language: string) => 
+    i18n.language.startsWith(language) ? 'active-lang' : '';
 
   return (
     <div className="app-container">
       <header className="header-main">
         <div className="header-container">
           <div className="brand-container">
-            <Link className="brand-link" to="/">
-              <img className='title-img' src={Title} alt="title" />
+            <Link className="brand-link" to="/" aria-label={t('homePage')}>
+              <img className='title-img' src={Title} alt={t('siteTitle')} />
             </Link>
           </div>
-          <div className='header-navigation'>
+          
+          <nav className='header-navigation' aria-label={t('mainNavigation')}>
             <div className="nav-item">
               <Linktext text={t('friends')} href="/friends" />
             </div>
+            
             <div className="brand-logo">
-              <img className="logo-image" src={logo} alt="logo" />
+              <img className="logo-image" src={logo} alt={t('siteLogo')} />
             </div>
+            
             <div className="auth-section">
               <Linktext text={t('login')} href="/login" />
               <div className="language-switcher">
                 <button 
                   onClick={() => changeLanguage('ru')}
-                  className={i18n.language === 'ru' ? 'active-lang' : ''}
+                  className={isActiveLanguage('ru')}
+                  aria-pressed={i18n.language.startsWith('ru')}
+                  aria-label={t('switchToRussian')}
                 >
                   RU
                 </button>
                 <button 
                   onClick={() => changeLanguage('uk')}
-                  className={i18n.language === 'uk' ? 'active-lang' : ''}
+                  className={isActiveLanguage('uk')}
+                  aria-pressed={i18n.language.startsWith('uk')}
+                  aria-label={t('switchToUkrainian')}
                 >
                   UA
                 </button>
               </div>
             </div>
-          </div>
+          </nav>
         </div>
       </header>
 
       <div className="mobile-button-container">
         <ButtonText 
-          className="button button--l"
-          onClick={handleNewPostClick}
+          className="button button--l button-primary"
+          as={Link}
+          to="/new-post"
+          aria-label={t('createNewPost')}
         >
           {t('newPost')}
         </ButtonText>
@@ -83,18 +77,19 @@ const Layout = () => {
       <div className="content-wrapper">
         <aside className="sidebar-primary">
           <ButtonText 
-            className="button button--l"
-            onClick={handleNewPostClick}
+            className="button button--l button-primary"
+            as={Link}
+            to="/new-post"
+            aria-label={t('createNewPost')}
           >
             {t('newPost')}
           </ButtonText>
         </aside>
-        <main className="content-main">
+        
+        <main className="content-main" id="main-content">
           <Outlet />
         </main>
       </div>
     </div>
   )
 }
-
-export default Layout;

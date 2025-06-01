@@ -5,32 +5,22 @@ import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
 import { useTranslation } from 'react-i18next';
 
 interface PostProps {
-  postID: number;
+  postID: String;
   title: string;
   shortDescription: string;
   name: string;
 }
 
-const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) => {
+export const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) => {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
-  const handleIncrement = () => setCount(prev => Math.max(0, prev - 1));
-  const handleDecrement = () => setCount(prev => prev + 1);
+  const handleIncrement = () => setCount(prev => prev + 1);
+  const handleDecrement = () => setCount(prev => Math.max(0, prev - 1));
   
   const handleCommentClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    
-    const isAuthenticated = !!localStorage.getItem('authToken');
-    if (!isAuthenticated) {
-      alert(t('registerAlert', {
-        link1: t('register'),
-        link2: t('login')
-      }));
-      return;
-    }
-    
     navigate(`/comments/${postID}`);
   };
 
@@ -46,11 +36,11 @@ const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) =>
         <p className='post-text'>{shortDescription}</p>
       </div>
       <div className="counter-container">
-        <button className="counter-btn" onClick={handleDecrement}>
+        <button className="counter-btn" onClick={handleIncrement}>
           <SlArrowUpCircle size={30} color='#3bd1ff' />
         </button>
         <span className='count'>{count}</span>
-        <button className="counter-btn" onClick={handleIncrement}>
+        <button className="counter-btn" onClick={handleDecrement}>
           <SlArrowDownCircle size={30} color='#3bd1ff'/>
         </button>
         <div 
@@ -64,5 +54,3 @@ const Post: React.FC<PostProps> = ({ title, shortDescription, name, postID }) =>
     </div>
   );
 };
-
-export default Post;

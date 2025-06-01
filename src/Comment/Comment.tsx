@@ -1,25 +1,25 @@
-import "./comment.css"
+import "./comment.css";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
 
-const name = "student"
+const name = "student";
 
 interface PostProps {
   text: string;
   name?: string;
-  commentID: number;
+  commentID: String;
 }
 
-const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
+export const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
-    setCount(prevCount => (prevCount > 0 ? prevCount - 1 : 0));
+    setCount(prevCount => prevCount + 1);
   };
 
   const handleDecrement = () => {
-    setCount(prevCount => prevCount + 1);
+    setCount(prevCount => (prevCount > 0 ? prevCount - 1 : 0));
   };
 
   return (
@@ -33,20 +33,20 @@ const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
       <div className="counter-container">
         <button 
           className="counter-btn" 
-          onClick={handleDecrement}
+          onClick={handleIncrement}
         >
           <SlArrowUpCircle 
-            size = {30}
+            size={30}
             color='#3bd1ff'
           />
         </button>
         <span className='count' id="counter">{count}</span>
         <button 
           className="counter-btn" 
-          onClick={handleIncrement}
+          onClick={handleDecrement}
         >
           <SlArrowDownCircle 
-            size = {30}
+            size={30}
             color='#3bd1ff'
           />
         </button>
@@ -54,5 +54,3 @@ const Comment: React.FC<PostProps> = ({ text, name, commentID }) => {
     </div>
   );
 };
-
-export default Comment;

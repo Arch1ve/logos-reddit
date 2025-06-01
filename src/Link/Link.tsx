@@ -6,7 +6,7 @@ interface LinkProps {
   href: string;
 }
 
-const Linktext: React.FC<LinkProps> = ({ text, href }) => {
+export const Linktext: React.FC<LinkProps> = ({ text, href }) => {
   return (
     <a
       href={href}
@@ -16,5 +16,3 @@ const Linktext: React.FC<LinkProps> = ({ text, href }) => {
     </a>
   );
 };
-
-export default Linktext;

@@ -9,7 +9,7 @@ interface ButtonTextProps extends React.ComponentPropsWithoutRef<'button'> {
   children: React.ReactNode;
 }
 
-const ButtonText: React.FC<ButtonTextProps> = ({ 
+export const ButtonText: React.FC<ButtonTextProps> = ({ 
   as: Component = 'button',
   to,
   className = '',
@@ -30,5 +30,3 @@ const ButtonText: React.FC<ButtonTextProps> = ({
     </Component>
   );
 };
-
-export default ButtonText;
