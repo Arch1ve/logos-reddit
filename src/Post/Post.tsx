@@ -10,16 +10,14 @@ interface PostProps {
   fullDescription: string; 
   name: string;
   totallikes: number; 
-  createdAt: string; // Ожидаем строку в формате ISO 8601
+  createdAt: string;
 }
 
-// Функция для форматирования даты в удобочитаемый вид
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   
-  // Проверка на валидность даты
   if (isNaN(date.getTime())) {
-    return dateString; // Возвращаем оригинал если дата невалидна
+    return dateString;
   }
   
   const day = date.getDate().toString().padStart(2, '0');
@@ -40,33 +38,41 @@ export const Post: React.FC<PostProps> = ({
   totallikes,
   createdAt
 }) => {
-  const [count, setCount] = useState(totallikes);
+  // Гарантируем, что начальное значение не меньше 0
+  const [count, setCount] = useState(Math.max(0, totallikes));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasVoted, setHasVoted] = useState(false);
   const navigate = useNavigate();
 
-  const handleLike = async () => {
+  // Общая функция для обработки лайков/дизлайков
+  const handleVote = async (type: 'like' | 'dislike') => {
     if (hasVoted) return;
     setIsLoading(true);
     setError(null);
+    
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Требуется авторизация');
 
-      const response = await fetch(`http://localhost:3000/api/post/${postID}/like`, {
+      const response = await fetch(`http://localhost:3000/api/post/${postID}/${type}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
       });
+      
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Ошибка сервера');
       }
+      
       const updatedPost = await response.json();
-      setCount(updatedPost.totallikes);
+      
+      // Гарантируем, что новое значение не меньше 0
+      const newCount = Math.max(0, updatedPost.totallikes);
+      setCount(newCount);
       setHasVoted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
@@ -75,44 +81,15 @@ export const Post: React.FC<PostProps> = ({
     }
   };
 
-  const handleDislike = async () => {
-    if (hasVoted) return;
-    setIsLoading(true);
-    setError(null);
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('Требуется авторизация');
-
-      const response = await fetch(`http://localhost:3000/api/post/${postID}/dislike`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Ошибка сервера');
-      }
-      const updatedPost = await response.json();
-      setCount(updatedPost.totallikes);
-      setHasVoted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const handleLike = () => handleVote('like');
+  const handleDislike = () => handleVote('dislike');
 
   const handleCommentClick = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate(`/comments/${postID}`);
   };
 
-  // Определяем цвет для кнопок
   const buttonColor = (isLoading || hasVoted) ? '#ccc' : '#3bd1ff';
-
-  // Форматируем дату создания
   const formattedDate = formatDate(createdAt);
 
   return (
@@ -126,7 +103,6 @@ export const Post: React.FC<PostProps> = ({
       <div className='post-text-div'> 
         <p className='post-text'>{shortDescription}</p>
       </div>
-      
       <div className='post-text-div'> 
         <p className='post-text'>{fullDescription}</p>
       </div>
@@ -140,6 +116,7 @@ export const Post: React.FC<PostProps> = ({
           <SlArrowUpCircle size={30} color={buttonColor} />
         </button>
 
+        {/* Гарантируем отображение не меньше 0 */}
         <span style={{ margin: '0 10px' }}>{count}</span>
 
         <button
@@ -161,15 +138,7 @@ export const Post: React.FC<PostProps> = ({
         {error && <div className="error-message">{error}</div>}
       </div>
 
-      <div 
-        style={{
-          fontSize: '12px',
-          color: 'gray',
-          marginTop: '5px',
-          marginLeft: "10px",
-          textAlign: 'left'
-        }}
-      >
+      <div className='Date'>
         {formattedDate}
       </div>
     </div>

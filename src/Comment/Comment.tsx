@@ -10,12 +10,14 @@ interface PostProps {
 }
 
 export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallikes }) => {
-  const [count, setCount] = useState(totallikes);
+  // Гарантируем начальное значение не меньше 0
+  const [count, setCount] = useState(Math.max(0, totallikes));
   const [isLoading, setIsLoading] = useState({ like: false, dislike: false });
-  const [hasVoted, setHasVoted] = useState(false); // Состояние для отслеживания голоса
+  const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
-    setCount(totallikes);
+    // Обновляем состояние с защитой от отрицательных значений
+    setCount(prev => Math.max(0, totallikes));
   }, [totallikes]);
 
   const getAuthToken = () => {
@@ -23,7 +25,7 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
   };
 
   const handleVote = async (type: 'like' | 'dislike') => {
-    if (hasVoted) return; // Блокировка при наличии голоса
+    if (hasVoted) return;
     
     setIsLoading(prev => ({ ...prev, [type]: true }));
     
@@ -42,8 +44,11 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
       if (!response.ok) throw new Error('Ошибка запроса');
       
       const data = await response.json();
-      setCount(data.totallikes ?? (type === 'like' ? totallikes + 1 : totallikes - 1));
-      setHasVoted(true); // Блокируем дальнейшие голоса
+      
+      // Гарантируем новое значение не меньше 0
+      const newLikes = data.totallikes ?? (type === 'like' ? count + 1 : count - 1);
+      setCount(Math.max(0, newLikes));
+      setHasVoted(true);
     } catch (error) {
       console.error(`Ошибка ${type === 'like' ? 'лайка' : 'дизлайка'}:`, error);
     } finally {
@@ -66,7 +71,7 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
         <button 
           className="counter-btn" 
           onClick={handleLike}
-          disabled={isLoading.like || hasVoted} // Блокировка при голосе
+          disabled={isLoading.like || hasVoted}
           aria-label="Лайк"
         >
           <SlArrowUpCircle 
@@ -75,12 +80,13 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
           />
         </button>
         
+        {/* Отображаем счетчик, гарантированно не меньше 0 */}
         <span className='count' id="counter">{count}</span>
         
         <button 
           className="counter-btn" 
           onClick={handleDislike}
-          disabled={isLoading.dislike || hasVoted} // Блокировка при голосе
+          disabled={isLoading.dislike || hasVoted}
           aria-label="Дизлайк"
         >
           <SlArrowDownCircle 

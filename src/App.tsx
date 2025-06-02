@@ -102,7 +102,7 @@ export const App = () => {
             postID={post._id}
             title={post.title}
             shortDescription={post.shortDescription}
-            fullDescription={post.fullDescription}
+            fullDescription=""
             name={post.author?.username} 
             totallikes={post.totallikes}
             createdAt = {post.createdAt}

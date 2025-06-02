@@ -40,24 +40,6 @@ export const Layout = () => {
             
             <div className="auth-section">
               <Linktext text={t('login')} href="/login" />
-              <div className="language-switcher">
-                <button 
-                  onClick={() => changeLanguage('ru')}
-                  className={isActiveLanguage('ru')}
-                  aria-pressed={i18n.language.startsWith('ru')}
-                  aria-label={t('switchToRussian')}
-                >
-                  RU
-                </button>
-                <button 
-                  onClick={() => changeLanguage('uk')}
-                  className={isActiveLanguage('uk')}
-                  aria-pressed={i18n.language.startsWith('uk')}
-                  aria-label={t('switchToUkrainian')}
-                >
-                  UA
-                </button>
-              </div>
             </div>
           </nav>
         </div>

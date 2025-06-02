@@ -37,35 +37,7 @@ const resources = {
       dontHaveAccount: "Нет аккаунта?",
     }
   },
-  uk: {
-    translation: {
-      friends: 'ДРУЗІ',
-      login: 'Увійти',
-      newPost: 'Новий пост',
-      answers: 'Відповіді:',
-      commentPlaceholder: 'Написати коментар...',
-      addComment: 'Додати коментар',
-      postNotFound: 'Пост не знайдено',
-      createNewPost: 'Створити новий пост',
-      title: 'Заголовок',
-      titlePlaceholder: 'Введіть заголовок...',
-      description: 'Опис',
-      descriptionPlaceholder: 'Напишіть зміст поста...',
-      createPost: 'Опублікувати',
-      currentUser: 'Поточний користувач',
-      welcome: 'Ласкаво просимо!',
-      createAccount: 'Створити акаунт',
-      email: 'Емейл',
-      password: 'Пароль',
-      username: "Ім'я",
-      emailPlaceholder: 'Введіть емейл...',
-      passwordPlaceholder: 'Введіть пароль...',
-      usernamePlaceholder: 'Оберіть імʼя...',
-      register: 'Зареєструватися',
-      registerAlert: "Будь ласка, зареєструйтесь або увійдіть, щоб створити пост",
-      shortDescriptionPlaceholder: "Введите краткое описание"
-    }
-  }
+
 };
 
 i18n
