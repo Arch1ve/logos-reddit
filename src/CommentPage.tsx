@@ -16,14 +16,16 @@ interface CommentData {
   description: string;
   author: Author;
   createdAt: string;
+  totallikes: number;
 }
 
 interface PostData {
   _id: string;
   title: string;
-  text: string;
+  description: string;
   author: Author;
   comments: CommentData[];
+  totallikes: number;
   createdAt: string;
 }
 
@@ -151,7 +153,7 @@ export function CommentPage() {
       <div className="comment-form-container">
         <Post 
           title={post.title}
-          shortDescription={post.text}
+          shortDescription=""
           name={post.author.username}
           postID={post._id}
           fullDescription={post.description}

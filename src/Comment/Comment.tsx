@@ -15,7 +15,6 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
-    setCount(prev => Math.max(0, totallikes));
   }, [totallikes]);
 
   const getAuthToken = () => {

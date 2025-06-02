@@ -100,7 +100,6 @@ body {
 
 .auth-section {
     margin-right: 50px;
-    margin-top: 20px;
 }
 
 .brand-logo {
@@ -218,7 +217,6 @@ body {
     }
 }
 
-/* Остальные стили */
 .posts-div {
     flex-grow: 1;
     display: flex;

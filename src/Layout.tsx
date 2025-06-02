@@ -8,16 +8,7 @@ import "./ButtonText/buttontext.sass";
 import { ButtonText } from './ButtonText/ButtonText';
 
 export const Layout = () => {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    localStorage.setItem('language', lng);
-  };
-
-  // Проверка активного языка для стилизации
-  const isActiveLanguage = (language: string) => 
-    i18n.language.startsWith(language) ? 'active-lang' : '';
+  const { t } = useTranslation();
 
   return (
     <div className="app-container">
