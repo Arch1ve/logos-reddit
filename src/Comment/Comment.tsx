@@ -10,13 +10,11 @@ interface PostProps {
 }
 
 export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallikes }) => {
-  // Гарантируем начальное значение не меньше 0
   const [count, setCount] = useState(Math.max(0, totallikes));
   const [isLoading, setIsLoading] = useState({ like: false, dislike: false });
   const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
-    // Обновляем состояние с защитой от отрицательных значений
     setCount(prev => Math.max(0, totallikes));
   }, [totallikes]);
 
@@ -45,7 +43,6 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
       
       const data = await response.json();
       
-      // Гарантируем новое значение не меньше 0
       const newLikes = data.totallikes ?? (type === 'like' ? count + 1 : count - 1);
       setCount(Math.max(0, newLikes));
       setHasVoted(true);
@@ -80,7 +77,6 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
           />
         </button>
         
-        {/* Отображаем счетчик, гарантированно не меньше 0 */}
         <span className='count' id="counter">{count}</span>
         
         <button 

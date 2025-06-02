@@ -41,7 +41,6 @@ export const App = () => {
     fetchPosts();
   }, []);
 
-  // Сортируем посты
   const sortedPosts = [...posts].sort((a, b) => {
     switch (sortOption) {
       case 'newest':

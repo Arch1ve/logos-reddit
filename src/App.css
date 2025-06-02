@@ -438,7 +438,6 @@ body {
   background-color: #3182ce;
 }
 
-/* Общие стили для форм */
 .new-post-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -516,9 +515,6 @@ body {
   width: 750px;
 }
 
-/* Добавьте эти стили в конец файла */
-
-/* CommentPage styles */
 .comment-page-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -603,7 +599,6 @@ body {
   margin-top: 1rem;
 }
 
-/* Адаптация для мобильных */
 @media (max-width: 700px) {
   .comment-page-container {
     padding: 1rem;

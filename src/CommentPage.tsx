@@ -1,4 +1,3 @@
-// CommentPage.tsx
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -157,6 +156,7 @@ export function CommentPage() {
           postID={post._id}
           fullDescription={post.description}
           totallikes={post.totallikes}
+          createdAt = {post.createdAt}
         />
         
         <div className="comments-section">
