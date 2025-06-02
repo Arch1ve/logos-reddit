@@ -2,18 +2,22 @@ import { useState, useEffect } from 'react'
 import { Post } from "./Post/Post.tsx"
 
 interface IPost {
-  postID: string;
+  _id: string;
   title: string;
   shortDescription: string;
+  fullDescription: string;
   author: { 
     username: string;
   };
+  totallikes: number;
+  createdAt: string;
 }
 
 export const App = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sortOption, setSortOption] = useState<'newest' | 'oldest' | 'most_liked' | 'least_liked'>('newest');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -37,6 +41,22 @@ export const App = () => {
     fetchPosts();
   }, []);
 
+  // Сортируем посты
+  const sortedPosts = [...posts].sort((a, b) => {
+    switch (sortOption) {
+      case 'newest':
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      case 'oldest':
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      case 'most_liked':
+        return b.totallikes - a.totallikes;
+      case 'least_liked':
+        return a.totallikes - b.totallikes;
+      default:
+        return 0;
+    }
+  });
+
   if (loading) {
     return <div className='loading'>Loading posts...</div>;
   }
@@ -46,17 +66,50 @@ export const App = () => {
   }
 
   return (
-    <div className='posts-div'>
-      {posts.map((post) => (
-        <Post
-          title={post.title}
-          key={post.postID}
-          postID={post._id}
-          shortDescription={post.shortDescription}
-          name={post.author?.username} 
-          totallikes={post.totallikes}
-        />
-      ))}
+    <div className='content-container'>
+      <div className='filter' style={{ 
+        margin: '20px',
+        display: 'flex',
+        justifyContent: 'flex-start'
+      }}>
+
+        <select 
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value as any)}
+          style={{
+            height: "50px", 
+            padding: '10px 15px',
+            borderRadius: '20px',
+            border: '2px solid #3bd1ff',
+            backgroundColor: '#f8f8f8',
+            fontSize: '16px',
+            cursor: 'pointer',
+            outline: 'none',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+            fontWeight: 'bold'
+          }}
+        >
+          <option value="newest">Сначала новые</option>
+          <option value="oldest">Сначала старые</option>
+          <option value="most_liked">Сначала популярные</option>
+          <option value="least_liked">Сначала непопулярные</option>
+        </select>
+      </div>
+      <div className='posts-div'>
+        {sortedPosts.map((post) => (
+          <Post
+            key={post._id}
+            postID={post._id}
+            title={post.title}
+            shortDescription={post.shortDescription}
+            fullDescription={post.fullDescription}
+            name={post.author?.username} 
+            totallikes={post.totallikes}
+            createdAt = {post.createdAt}
+          />
+        ))}
+      </div>
+      <div className='space' ></div>
     </div>
   );
 };

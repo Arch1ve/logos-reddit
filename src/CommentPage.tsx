@@ -109,9 +109,8 @@ export function CommentPage() {
       }
 
       const createdComment = await response.json()
-      console.log("Created comment:", createdComment); // Отладочная информация
+      console.log("Created comment:", createdComment); 
       
-      // Адаптация нового комментария
       let adaptedComment = createdComment;
       if (typeof createdComment.author === 'string') {
         adaptedComment = {
@@ -156,6 +155,7 @@ export function CommentPage() {
           shortDescription={post.text}
           name={post.author.username}
           postID={post._id}
+          fullDescription={post.description}
           totallikes={post.totallikes}
         />
         
@@ -189,6 +189,7 @@ export function CommentPage() {
                 commentID={comment._id}
                 text={comment.description}
                 author={comment.author.username}
+                totallikes={comment.totallikes}
               />
             ))}
           </div>

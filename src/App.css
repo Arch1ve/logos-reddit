@@ -609,3 +609,25 @@ body {
     padding: 1rem;
   }
 }
+
+
+.content-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+  width: 100%;
+}
+
+.filter {
+  width: 300px;
+}
+
+.space {
+  width: 300px;
+}
+
+.posts-div {
+  width: 100%;
+}
+
