@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Linktext } from "./Link/Link";
 import "./App.css";
 import { ButtonText } from './ButtonText/ButtonText';
 
-export function CreateUser() {
+export function Login() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    username: ''
   });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,20 +28,7 @@ export function CreateUser() {
     setIsSubmitting(true);
 
     try {
-      // Регистрация пользователя
-      const registerResponse = await fetch('http://localhost:3000/api/user/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (!registerResponse.ok) {
-        const errorData = await registerResponse.json();
-        throw new Error(errorData.message || t('registrationFailed'));
-      }
-
-      // Автоматический вход после успешной регистрации
-      const loginResponse = await fetch('http://localhost:3000/api/user/login', {
+      const response = await fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -53,16 +37,17 @@ export function CreateUser() {
         })
       });
 
-      if (!loginResponse.ok) {
-        throw new Error(t('autoLoginFailed'));
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || t('loginFailed'));
       }
 
-      const { token } = await loginResponse.json();
+      const { token } = await response.json();
       localStorage.setItem('token', token);
-      navigate('/'); 
+      navigate('/');
 
     } catch (err: any) {
-      setError(err.message || t('registrationError'));
+      setError(err.message || t('loginError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -71,7 +56,7 @@ export function CreateUser() {
   return (
     <div className="new-post-container">
       <form onSubmit={handleSubmit} className="post-form">
-        <h2 className="form-title">{t('createAccount')}</h2>
+        <h2 className="form-title">{t('login')}</h2>
         
         {error && <div className="error-message">{error}</div>}
         
@@ -104,25 +89,7 @@ export function CreateUser() {
               placeholder={t('passwordPlaceholder')}
               required
               disabled={isSubmitting}
-              autoComplete="new-password"
-              minLength={6}
-            />
-          </label>
-        </div>
-
-        <div className="form-group">
-          <label className="input-label">
-            <Linktext text={`${t('username')}:`} href="#" />
-            <input
-              className="form-input"
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder={t('usernamePlaceholder')}
-              required
-              disabled={isSubmitting}
-              autoComplete="username"
+              autoComplete="current-password"
             />
           </label>
         </div>
@@ -133,14 +100,13 @@ export function CreateUser() {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? t('registering') : t('register')}
+            {isSubmitting ? t('loggingIn') : t('loginButton')}
           </ButtonText>
         </div>
 
-        {/* Добавленная ссылка для входа */}
         <div className="login-link">
-          <span>{t('alreadyHaveAccount')} </span>
-          <Link to="/login">{t('login')}</Link>
+          <span>{t('dontHaveAccount')} </span>
+          <Link to="/register">{t('register')}</Link>
         </div>
       </form>
     </div>

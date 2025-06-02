@@ -9,6 +9,7 @@ import { CommentPage } from './CommentPage';
 import  { Layout } from './Layout';
 import { CreatePost } from './CreatePost';
 import { CreateUser } from './CreateUser';
+import { Login } from './Login'; // Импортируем новый компонент
 import "./i18n";
 
 createRoot(document.getElementById('root')!).render(
@@ -19,7 +20,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<App />} />
           <Route path="/comments/:postId" element={<CommentPage />} />
           <Route path="/new-post" element={<CreatePost />} />
-          <Route path="/login" element={<CreateUser />} />
+          <Route path="/register" element={<CreateUser />} /> {/* Измененный путь */}
+          <Route path="/login" element={<Login />} /> {/* Новый маршрут */}
         </Route>
       </Routes>
     </BrowserRouter>

@@ -4,11 +4,11 @@ import { SlArrowUpCircle, SlArrowDownCircle } from "react-icons/sl";
 
 interface PostProps {
   text: string;
-  name?: string;
   commentID: string;
+  author: string;
 }
 
-export const Comment: React.FC<PostProps> = ({ text, name }) => {
+export const Comment: React.FC<PostProps> = ({ text, author }) => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -22,7 +22,7 @@ export const Comment: React.FC<PostProps> = ({ text, name }) => {
   return (
     <div className='comment'>
       <div className='comment-name-div'> 
-        <p className='comment-name'>{name}</p>
+        <p className='comment-name'>{author}</p>
       </div>
       <div className='comment-text-div'> 
         <p className='comment-text'>{text}</p>

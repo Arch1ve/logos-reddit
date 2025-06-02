@@ -54,6 +54,7 @@ export const App = () => {
           postID={post._id}
           shortDescription={post.shortDescription}
           name={post.author?.username} 
+          totallikes={post.totallikes}
         />
       ))}
     </div>

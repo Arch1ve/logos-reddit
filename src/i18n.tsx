@@ -6,7 +6,6 @@ const resources = {
   ru: {
     translation: {
       friends: 'Друзья',
-      login: 'Регистрация',
       newPost: 'Новый пост',
       answers: 'Ответы:',
       commentPlaceholder: 'Напишите комментарий...',
@@ -29,6 +28,13 @@ const resources = {
       usernamePlaceholder: 'Выберете имя...',
       register: 'Регистрация',
       registerAlert: "Пожалуйста, зарегистрируйтесь или войдите, чтобы создать пост",
+      login: "Войти",
+      loginButton: "Войти",
+      loginFailed: "Ошибка входа",
+      loginError: "Ошибка при входе",
+      loggingIn: "Вход...",
+      alreadyHaveAccount: "Уже есть аккаунт?",
+      dontHaveAccount: "Нет аккаунта?",
     }
   },
   uk: {

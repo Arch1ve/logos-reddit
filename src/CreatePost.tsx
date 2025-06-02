@@ -87,13 +87,13 @@ export function CreatePost() {
 
         <div className="form-group">
           <label className="input-label">
-            <Linktext text={`${t('shortDescription')}:`} href="#" />
+            <Linktext text={`${t('Краткое описание')}:`} href="#" />
             <textarea
               className="form-textarea short-description"
               name="shortDescription"
               value={formData.shortDescription}
               onChange={handleChange}
-              placeholder={t('shortDescriptionPlaceholder')}
+              placeholder={t('Добавьте краткое описание...')}
               required
               rows={3}
               maxLength={200}

@@ -7,17 +7,25 @@ import { Comment } from "./Comment/Comment"
 import { Linktext } from "./Link/Link"
 import './App.css'
 
+interface Author {
+  _id: string;
+  username: string;
+}
+
 interface CommentData {
   _id: string;
-  text: string;
+  description: string;
+  author: Author;
+  createdAt: string;
 }
 
 interface PostData {
   _id: string;
   title: string;
   text: string;
-  name: string;
+  author: Author;
   comments: CommentData[];
+  createdAt: string;
 }
 
 export function CommentPage() {
@@ -29,7 +37,6 @@ export function CommentPage() {
   const [error, setError] = useState<string | null>(null)
   const [newComment, setNewComment] = useState('')
 
-  // Загрузка поста и комментариев
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -44,8 +51,26 @@ export function CommentPage() {
         }
         
         const data = await response.json();
-        setPost(data);
-      } catch (err) {
+        console.log("Fetched post data:", data);
+        
+        const adaptedComments = data.comments.map((comment: any) => {
+          if (typeof comment.author === 'string') {
+            return {
+              ...comment,
+              author: {
+                _id: 'unknown-id',
+                username: comment.author
+              }
+            };
+          }
+          return comment;
+        });
+        
+        setPost({
+          ...data,
+          comments: adaptedComments
+        });
+      } catch (err: any) {
         setError(err.message || 'Error loading post');
       } finally {
         setLoading(false);
@@ -55,13 +80,11 @@ export function CommentPage() {
     fetchPost();
   }, [postId, navigate]);
 
-  // Создание нового комментария
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!newComment.trim() || !postId) return
 
     try {
-      // Получаем токен из localStorage
       const token = localStorage.getItem('token');
       if (!token) {
         navigate('/login');
@@ -72,14 +95,12 @@ export function CommentPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Добавляем токен в заголовок Authorization
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ description: newComment }),
       })
 
       if (!response.ok) {
-        // Обработка ошибки 401 (Unauthorized)
         if (response.status === 401) {
           navigate('/login');
           return;
@@ -88,17 +109,29 @@ export function CommentPage() {
       }
 
       const createdComment = await response.json()
+      console.log("Created comment:", createdComment); // Отладочная информация
       
-      // Обновляем состояние, добавляя новый комментарий
+      // Адаптация нового комментария
+      let adaptedComment = createdComment;
+      if (typeof createdComment.author === 'string') {
+        adaptedComment = {
+          ...createdComment,
+          author: {
+            _id: 'unknown-id',
+            username: createdComment.author
+          }
+        };
+      }
+
       if (post) {
         setPost({
           ...post,
-          comments: [...post.comments, createdComment]
+          comments: [...post.comments, adaptedComment]
         })
       }
       
       setNewComment('')
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error creating comment:', err)
     }
   }
@@ -112,7 +145,7 @@ export function CommentPage() {
   }
 
   if (!post) {
-    return <div>{t('postNotFound')}</div>
+    return <div className="error-container">{t('postNotFound')}</div>
   }
 
   return (
@@ -121,8 +154,9 @@ export function CommentPage() {
         <Post 
           title={post.title}
           shortDescription={post.text}
-          name={post.name}
+          name={post.author.username}
           postID={post._id}
+          totallikes={post.totallikes}
         />
         
         <div className="comments-section">
@@ -138,6 +172,7 @@ export function CommentPage() {
                 placeholder={t('commentPlaceholder')}
                 className="comment-textarea"
                 rows={4}
+                required
               />
               <button type="submit" className="comment-submit-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -153,6 +188,7 @@ export function CommentPage() {
                 key={comment._id}
                 commentID={comment._id}
                 text={comment.description}
+                author={comment.author.username}
               />
             ))}
           </div>
