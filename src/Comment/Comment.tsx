@@ -8,6 +8,7 @@ interface PostProps {
   commentID: string;
   author: string;
   totallikes: number;
+  postId: string;
 }
 
 export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallikes }) => {

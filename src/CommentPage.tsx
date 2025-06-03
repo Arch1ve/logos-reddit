@@ -193,6 +193,7 @@ export function CommentPage() {
                 text={comment.description}
                 author={comment.author?.username}
                 totallikes={comment.totallikes}
+                postId={post._id}
               />
             ))}
           </div>

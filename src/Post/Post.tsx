@@ -125,7 +125,7 @@ export const Post: React.FC<PostProps> = ({
           onClick={handleDislike}
           disabled={isLoading || hasVoted}
         >
-          <SlArrowDownCircle size={30} color={buttonColor} />
+          <SlArrowDownCircle size={30} color={buttonColor}/>
         </button>
 
         <div 
