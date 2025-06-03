@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Linktext } from "./Link/Link";
 import "./App.css";
 import { ButtonText } from './ButtonText/ButtonText';
+import {API_URL} from "./api-config.ts";
 
 export function CreateUser() {
   const { t } = useTranslation();
@@ -32,7 +33,7 @@ export function CreateUser() {
 
     try {
       // Регистрация пользователя
-      const registerResponse = await fetch('http://localhost:3000/api/user/register', {
+      const registerResponse = await fetch(API_URL + '/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -44,7 +45,7 @@ export function CreateUser() {
       }
 
       // Автоматический вход после успешной регистрации
-      const loginResponse = await fetch('http://localhost:3000/api/user/login', {
+      const loginResponse = await fetch(API_URL + '/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

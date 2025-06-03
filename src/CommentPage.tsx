@@ -5,6 +5,7 @@ import { Post } from "./Post/Post"
 import { Comment } from "./Comment/Comment"
 import { Linktext } from "./Link/Link"
 import './App.css'
+import {API_URL} from "./api-config.ts";
 
 interface Author {
   _id: string;
@@ -42,7 +43,7 @@ export function CommentPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3000/api/post/${postId}`);
+        const response = await fetch(`${API_URL}/post/${postId}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -92,7 +93,7 @@ export function CommentPage() {
         return;
       }
 
-      const response = await fetch(`http://localhost:3000/api/comment/create/${postId}`, {
+      const response = await fetch(`${API_URL}/comment/create/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

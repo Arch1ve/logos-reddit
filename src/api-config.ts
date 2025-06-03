@@ -1,0 +1,1 @@
+export const API_URL = "http://logos-space.ru/api" as const

@@ -1,6 +1,7 @@
 import "./comment.css";
 import React, { useState, useEffect } from 'react';
 import { SlArrowUpCircle, SlArrowDownCircle } from "react-icons/sl";
+import {API_URL} from "../api-config.ts";
 
 interface PostProps {
   text: string;
@@ -30,7 +31,7 @@ export const Comment: React.FC<PostProps> = ({ text, commentID, author, totallik
       const token = getAuthToken();
       const endpoint = type === 'like' ? 'like' : 'dislike';
       
-      const response = await fetch(`http://localhost:3000/api/comment/${commentID}/${endpoint}`, {
+      const response = await fetch(`${API_URL}/comment/${commentID}/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

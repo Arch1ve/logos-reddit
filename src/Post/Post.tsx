@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./post.css"
 import { SlArrowUpCircle, SlArrowDownCircle, SlBubble } from "react-icons/sl";
+import {API_URL} from "../api-config.ts";
 
 interface PostProps {
   postID: string;
@@ -55,7 +56,7 @@ export const Post: React.FC<PostProps> = ({
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Требуется авторизация');
 
-      const response = await fetch(`http://localhost:3000/api/post/${postID}/${type}`, {
+      const response = await fetch(`${API_URL}/post/${postID}/${type}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

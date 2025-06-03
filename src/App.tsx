@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Post } from "./Post/Post.tsx"
+import {API_URL} from "./api-config.ts";
 
 interface IPost {
   _id: string;
@@ -22,7 +23,7 @@ export const App = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/posts");
+        const response = await fetch(API_URL + "/posts");
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

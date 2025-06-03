@@ -5,6 +5,7 @@ import { ButtonText } from './ButtonText/ButtonText';
 import { Linktext } from "./Link/Link";
 import "./App.css";
 import "./ButtonText/buttontext.sass";
+import {API_URL} from "./api-config.ts";
 
 export function CreatePost() {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export function CreatePost() {
         throw new Error(t('authTokenMissing'));
       }
 
-      const response = await fetch("http://localhost:3000/api/post/create", {
+      const response = await fetch(API_URL + "/post/create", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
