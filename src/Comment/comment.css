@@ -79,9 +79,8 @@
 
 @media (max-width: 700px) {
   .comment {
-    width: 400px;
+    width: 100%;
     margin: 15px auto;
-    border-radius: 15px;
   }
 
   .comment-text-div {

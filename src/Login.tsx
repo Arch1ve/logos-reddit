@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { Linktext } from "./Link/Link";
+import {Link, useNavigate} from 'react-router-dom';
+import { Linktext } from "./Link";
 import "./App.css";
-import { ButtonText } from './ButtonText/ButtonText';
+import { ButtonText } from './ButtonText';
+
+const getAuthToken = () => {
+  return localStorage.getItem('token') || '';
+};
 
 export function Login() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
+  const authToken = getAuthToken();
+
+  useEffect(() => {
+    if (authToken) {
+      navigate("/");
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,7 +55,7 @@ export function Login() {
 
       const { token } = await response.json();
       localStorage.setItem('token', token);
-      navigate('/');
+      window.location.reload();
 
     } catch (err: any) {
       setError(err.message || t('loginError'));

@@ -131,8 +131,8 @@ body {
 }
 
 .content-main {
-    flex-grow: 1;
     display: flex;
+    flex-grow: 1;
     flex-direction: row;
     justify-content: start;
     background-color:  #ffffff;
@@ -152,11 +152,6 @@ body {
 
     .content-wrapper {
         flex-direction: column;
-    }
-
-    .content-main {
-        width: 100%;
-        padding: 15px;
     }
 
     .header-main {
@@ -182,7 +177,6 @@ body {
     }
 
     .brand-logo {
-        margin-left: auto;
         flex-shrink: 0;
     }
 
@@ -350,8 +344,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  width: 500px;
-  height: 600px;
 }
 
 .form-group {
@@ -444,7 +436,6 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 900px;
-  height: 1000px;
 }
 
 .form-title {
@@ -473,7 +464,7 @@ body {
   gap: 0.5rem;
   font-weight: 500;
   color: #4a5568;
-  width: 750px;
+  width: fit-content;
 }
 
 .form-input {
@@ -609,18 +600,72 @@ body {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-  width: 100%;
 }
 
 .filter {
-  width: 300px;
+    width: 300px;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start
 }
 
+.button.new-post-btn {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .space {
+        display: none;
+    }
+
+    .content-container {
+        flex-direction: column;
+    }
+
+    .filter {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content-main {
+        flex-grow: 0;
+    }
+
+    .button.new-post-btn {
+        display: flex;
+        margin-top: 0;
+    }
+
+    .form-group {
+        width: auto;
+    }
+
+    .comment-textarea {
+        width: 400px;
+    }
+
+    .form-input {
+        width: 400px;
+    }
+
+    .form-textarea {
+        max-width: 500px;
+        min-width: 400px;
+    }
+}
 .space {
   width: 300px;
 }
 
 .posts-div {
   width: 100%;
+}
+
+.profile-badge {
+    display: flex;
+    font-size: 26px;
+    align-items: center;
+    gap: 4px;
 }
 

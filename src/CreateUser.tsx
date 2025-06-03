@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Linktext } from "./Link/Link";
+import { Linktext } from "./Link";
 import "./App.css";
-import { ButtonText } from './ButtonText/ButtonText';
+import { ButtonText } from './ButtonText';
 import {API_URL} from "./api-config.ts";
+
+const getAuthToken = () => {
+  return localStorage.getItem('token') || '';
+};
 
 export function CreateUser() {
   const { t } = useTranslation();
@@ -17,6 +21,15 @@ export function CreateUser() {
   });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const authToken = getAuthToken();
+
+  useEffect(() => {
+    if (authToken) {
+      navigate("/");
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,7 +45,6 @@ export function CreateUser() {
     setIsSubmitting(true);
 
     try {
-      // Регистрация пользователя
       const registerResponse = await fetch(API_URL + '/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +56,6 @@ export function CreateUser() {
         throw new Error(errorData.message || t('registrationFailed'));
       }
 
-      // Автоматический вход после успешной регистрации
       const loginResponse = await fetch(API_URL + '/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -60,7 +71,7 @@ export function CreateUser() {
 
       const { token } = await loginResponse.json();
       localStorage.setItem('token', token);
-      navigate('/'); 
+      window.location.reload();
 
     } catch (err: any) {
       setError(err.message || t('registrationError'));

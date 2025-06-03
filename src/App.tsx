@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Post } from "./Post/Post.tsx"
+import { Post } from "./Post"
 import {API_URL} from "./api-config.ts";
+import {ButtonText} from "./ButtonText";
+import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 interface IPost {
   _id: string;
@@ -14,16 +17,25 @@ interface IPost {
   createdAt: string;
 }
 
+const getAuthToken = () => {
+  return localStorage.getItem('token') || '';
+};
+
 export const App = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<'newest' | 'oldest' | 'most_liked' | 'least_liked'>('newest');
 
+  const { t } = useTranslation();
+
+
+  const authToken = getAuthToken();
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(API_URL + "/posts");
+        const response = await fetch(API_URL + "/posts", {headers: {Authorization: `Bearer ${authToken}`}});
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,11 +80,8 @@ export const App = () => {
   return (
     <div className='content-container'>
       <div className='filter' style={{ 
-        margin: '20px',
-        display: 'flex',
-        justifyContent: 'flex-start'
-      }}>
 
+      }}>
         <select 
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value as any)}
@@ -94,6 +103,14 @@ export const App = () => {
           <option value="most_liked">Сначала популярные</option>
           <option value="least_liked">Сначала непопулярные</option>
         </select>
+        <ButtonText
+          className="button button--l button-primary new-post-btn"
+          as={Link}
+          to="/new-post"
+          aria-label={t('createNewPost')}
+        >
+          {t('newPost')}
+        </ButtonText>
       </div>
       <div className='posts-div'>
         {sortedPosts.map((post) => (

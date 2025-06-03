@@ -191,7 +191,7 @@ export function CommentPage() {
                 key={comment._id}
                 commentID={comment._id}
                 text={comment.description}
-                author={comment.author.username}
+                author={comment.author?.username}
                 totallikes={comment.totallikes}
               />
             ))}
